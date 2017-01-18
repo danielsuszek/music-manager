@@ -1,0 +1,6 @@
+mcm_demo_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: MCMDemoBundle:Default:index }
+mcm_demo_testpage:
+    path:     /test/{testVariable}
+    defaults: { _controller: MCMDemoBundle:Test:test }
