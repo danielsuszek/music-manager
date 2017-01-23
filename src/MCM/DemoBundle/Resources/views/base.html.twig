@@ -3,13 +3,11 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome MCM!{% endblock %}</title>
-        {% block stylesheets %}
-{#            <link href="{{ asset('css/main.css') }}" rel="stylesheet" />#}
 
-{#       !!!  First run  php app/console assets:install web --symlink
-            and then you can link css,js in that way   #}
-            <link href="{{ asset('bundles/mcmdemo/css/main.css') }}" rel="stylesheet" />
-        {% endblock %}
+        
+        {% stylesheets '@MCMDemoBundle/Resources/public/less/style.less' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
