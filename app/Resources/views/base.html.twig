@@ -5,7 +5,11 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         
         
-        {% stylesheets '@MCMDemoBundle/Resources/public/less/style.less' %}
+{#        {% stylesheets '@MCMDemoBundle/Resources/public/less/style.less' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+#} 
+    {% stylesheets '@MusicManagerManageBundle/Resources/public/less/style.less' %}
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
