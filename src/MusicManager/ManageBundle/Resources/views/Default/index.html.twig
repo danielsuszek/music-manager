@@ -1,21 +1,56 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <body class="bg-primary">
-    <header>
-        <div class="jumbotron">
-            <div class="container">
-                <h1>Nagłówek</h1>
+    <body>
+        <button type="button" class="btn btn-info">Button 7</button>
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-xs-12">                    
+                        <div class="panel panel-default">
+                            <div class="jumbotron jumbotron-no-margin">
+                            <h1>Albumy Wszech Czasów</h1>
+                            <p>Najważniejsze albumy, które zmieniły historię <br>
+                                muzyki rozrywkowej.</p>
+                        </div>
+                        <h1 class="list-album-header">LISTA ALBUMÓW</h1>
+                        <div class="list-group">                            
+                            
+                            <a href="#" class="list-group-item"> 
+                            {% image '@MusicManagerManageBundle/Resources/public/images/Jimi_Hendrix_-_Electric_Ladyland.jpg' %}
+                                <img src="{{ asset_url }}" alt="" class="picture-small" />
+                            {% endimage %}
+                                Electic Ladyland - The Jimi Hendrix Experience</a>
+                                
+                            <a href="#" class="list-group-item"> 
+                            {% image '@MusicManagerManageBundle/Resources/public/images/220px-AreyouexpUK.jpg' %}
+                                <img src="{{ asset_url }}" alt="" class="picture-small" />
+                            {% endimage %}
+                                 Are You Experienced - The Jimi Hendrix Experience</a>
+                                 
+                            <a href="#" class="list-group-item"> 
+                            {% image '@MusicManagerManageBundle/Resources/public/images/220px-Unknownpleasures.jpg' %}
+                                <img src="{{ asset_url }}" alt="" class="picture-small" />
+                            {% endimage %}
+                                 Unknown Pleasures - Joy Division</a>
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
         </div>
-    </header>
-                                    Hello {{ name }}!
-         <a href="#" class="btn btn-blackfont">Button 2</a>
-         <button type="button" class="btn btn-info">Button 7</button>
-    </div>
+<!--        
+            <div class="left-and-right">
+                <div class="left">I'm on the left</div>
+                <div class="right">I'm on the right</div>
+            </div>
 
-    
-</body>	
-</html>
+
+            <button type="button" class="btn btn-primary">Primary</button>
+        </div>-->
+            
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </body>
 {% endblock %}
 
