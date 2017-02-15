@@ -30,7 +30,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [MCMDemoBundle, MusicManagerManageBundle ]
+    bundles:        [MusicManagerManageBundle ]
     filters:
         cssrewrite: ~
         less:
