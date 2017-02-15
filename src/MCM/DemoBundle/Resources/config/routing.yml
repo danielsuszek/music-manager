@@ -1,3 +1,0 @@
-mcm_demo_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: MCMDemoBundle:Default:index }
