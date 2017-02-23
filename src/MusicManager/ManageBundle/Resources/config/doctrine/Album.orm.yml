@@ -1,0 +1,34 @@
+MusicManager\ManageBundle\Entity\Album:
+    type: entity
+    table: album
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        name:
+            type: string
+            length: '100'
+        released:
+            type: integer
+        description:
+            type: string
+            length: 255
+        rate:
+            type: integer
+        sleevePicUrl:
+            type: string
+            length: 255
+            column: sleeve_pic_url
+        bandId:
+            type: integer
+            column: band_id
+    lifecycleCallbacks: {  }    
+    manyToOne:
+        band:
+            targetEntity: Band
+            inversedBy: albums
+            joinColumn:
+                name: band_id
+                referencedColumnName: id

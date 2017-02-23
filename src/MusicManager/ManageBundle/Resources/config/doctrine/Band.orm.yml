@@ -1,0 +1,20 @@
+MusicManager\ManageBundle\Entity\Band:
+    type: entity
+    table: band
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        name:
+            type: string
+            length: '150'
+        description:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }
+    oneToMany:
+        albums:
+            targetEntity: Album
+            mappedBy: band    
