@@ -32,3 +32,8 @@ MusicManager\ManageBundle\Entity\Album:
             joinColumn:
                 name: band_id
                 referencedColumnName: id
+    oneToMany:
+        songs:
+            targetEntity: Song
+            mappedBy: album    
+                

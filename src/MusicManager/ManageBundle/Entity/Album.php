@@ -54,6 +54,16 @@ class Album
      */
     private $band ;
 
+    /*
+     * @var Collection Song
+     */
+    private $songs ;
+    
+
+    public function __construct() 
+    {
+        $this->songs = new ArrayCollection();
+    }
     /**
      * Get id
      *
@@ -210,5 +220,15 @@ class Album
     public function getBand()
     {
         return $this->band;
+    }
+    
+    /**
+     * Get songs
+     *
+     * @return Collection Song
+     */
+    public function getSongs()
+    {
+        return $this->songs;
     }
 }

@@ -1,0 +1,30 @@
+song:
+    path:     /
+    defaults: { _controller: "MusicManagerManageBundle:Song:index" }
+
+song_show:
+    path:     /{id}/show
+    defaults: { _controller: "MusicManagerManageBundle:Song:show" }
+
+song_new:
+    path:     /new
+    defaults: { _controller: "MusicManagerManageBundle:Song:new" }
+
+song_create:
+    path:     /create
+    defaults: { _controller: "MusicManagerManageBundle:Song:create" }
+    requirements: { _method: post }
+
+song_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MusicManagerManageBundle:Song:edit" }
+
+song_update:
+    path:     /{id}/update
+    defaults: { _controller: "MusicManagerManageBundle:Song:update" }
+    requirements: { _method: post|put }
+
+song_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MusicManagerManageBundle:Song:delete" }
+    requirements: { _method: post|delete }

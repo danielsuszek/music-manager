@@ -7,3 +7,6 @@ music_manager_manage_band:
 music_manager_manage_album:
     resource: "@MusicManagerManageBundle/Resources/config/routing/album.yml"
     prefix:   /album
+music_manager_manage_song:
+    resource: "@MusicManagerManageBundle/Resources/config/routing/song.yml"
+    prefix:   /song

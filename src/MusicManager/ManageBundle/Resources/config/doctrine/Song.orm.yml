@@ -1,0 +1,23 @@
+MusicManager\ManageBundle\Entity\Song:
+    type: entity
+    table: song
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        title:
+            type: string
+            length: 255
+        length:
+            type: string
+            length: '12'
+    lifecycleCallbacks: {  }
+    manyToOne:
+        album:
+            targetEntity: Album
+            inversedBy: songs
+            joinColumn:
+                name: album_id
+                referencedColumnName: id    
