@@ -3,8 +3,11 @@
 {% block body -%}
     <div class="panel panel-default panel-album">
             <div class="panel-heading h2">
-                {{ entity.name }}
+                {{ entity.name }} ({{ entity.released }})<a class="float-right" href="{{ path('album') }}">&larr;Powrót</a>
+                <h5 class="bold">{{ entity.band.name }}</h5>
+                <h5>Ocena: {{ entity.rate }}/10</h5>
             </div>
+            
             <div class="panel-body">
                 <div class="col-xs-6"> 
                     <img src="{{ entity.sleevePicUrl }}" alt="" class="picture-big" />                             
@@ -12,59 +15,17 @@
                 <div class="col-xs-6">
                     <ol class="song-list">
                     {% for song in entity.songs %}
-                        <li>{{ song.title }}</li>
+                        <li>{{ song.title }} {{ song.length }}</li>
                     {% endfor %}
                     </ol>
                 </div>
             </div>
-    </div>  
-            <div class="col-xs-12">
-                <tr>
-                    <th>Id</th>
-                    <td>{{ entity.id }}</td>
-                </tr>
-                <tr>
-                    <th>Name</th>
-                    <td>{{ entity.name }}</td>
-                </tr>
-                <tr>
-                    <th>Released</th>
-                    <td>{{ entity.released }}</td>
-                </tr>
-                <tr>
-                    <th>Description</th>
-                    <td>{{ entity.description }}</td>
-                </tr>
-                <tr>
-                    <th>Rate</th>
-                    <td>{{ entity.rate }}</td>
-                </tr>
-                <tr>
-                    <th>Sleevepicurl</th>
-                    <td>{{ entity.sleevePicUrl }}</td>
-                </tr>
-                <tr>
-                    <th>Bandid</th>
-                    <td>{{ entity.bandId }}</td>
-                </tr>
-                <tr>
-                    <th>Bandname</th>
-                    <td>{{ entity.band.name }}</td>
-                </tr>
+            <div class="description">
+                <span class="bold">Opis:</span> {{ entity.description }}
+            </div>
+            <div class="row">
             </div>
 
-{#        <ul class="record_actions">
-            <li>
-                <a href="{{ path('album') }}">
-                    Back to the list
-                </a>
-            </li>
-            <li>
-                <a href="{{ path('album_edit', { 'id': entity.id }) }}">
-                    Edit
-                </a>
-            </li>
-            <li>{{ form(delete_form) }}</li>
-        </ul>
-#}
-    {% endblock %}
+                    
+    </div>  
+{% endblock %}

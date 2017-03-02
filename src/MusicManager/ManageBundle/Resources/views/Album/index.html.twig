@@ -1,18 +1,16 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-<body>    
-    <div class="container">
-        <div class="row">    
-            <div class="col-xs-12">                    
-                <div class="panel panel-default">
-                    <div class="jumbotron jumbotron-no-margin">
-                    <h1>Albumy Wszech Czasów</h1>
-                    <p>Najważniejsze albumy, które zmieniły historię <br>
-                        muzyki rozrywkowej.</p>
-                </div>
+
                 <h1 class="list-album-header">LISTA ALBUMÓW</h1>
-                
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="text-center">
+                      <a href="{{ path('album_new') }}"><button class="btn btn-primary" id="singlebutton">Dodaj album</button></a>
+                          
+                    </div>
+                  </div>
+                </div>
                 <div class="list-group">
                     {% for entity in entities %}
                         <a href="{{ path('album_show', {'id': entity.id}) }}" class="list-group-item"> 
@@ -66,10 +64,5 @@
                         </a>
                     </li>
                 </ul>
-#}            </div>
-        </div>
-    </div>                
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</body>                    
+#}
 {% endblock %}

@@ -5675,7 +5675,7 @@ button.list-group-item-danger.active:focus {
   border-color: #337ab7;
 }
 .panel-primary > .panel-heading {
-  color: #ffffff;
+  color: #000000;
   background-color: #337ab7;
   border-color: #337ab7;
 }
@@ -5684,7 +5684,7 @@ button.list-group-item-danger.active:focus {
 }
 .panel-primary > .panel-heading .badge {
   color: #337ab7;
-  background-color: #ffffff;
+  background-color: #000000;
 }
 .panel-primary > .panel-footer + .panel-collapse > .panel-body {
   border-bottom-color: #337ab7;
@@ -6726,6 +6726,10 @@ button.close {
   }
 }
 /* check my style */
+label,
+input {
+  color: #000;
+}
 .containter {
   background-color: #fcfbe3;
   border: 0;
@@ -6736,12 +6740,12 @@ button.close {
 .picture-big {
   height: 350px;
   width: 350px;
+  border: 1px dotted #fff;
 }
 .picture-small {
   height: 130px;
   width: 130px;
-  border: 10px solid black;
-  margin-right: 150px;
+  margin-right: 50px;
 }
 .list-album-header {
   margin: 0;
@@ -6789,4 +6793,48 @@ button.close {
 }
 .band-name {
   font-weight: bold;
+}
+.song-list {
+  padding-top: 30px;
+  color: #000;
+}
+.panel-album {
+  margin: auto;
+  width: 800px;
+}
+.description {
+  color: #000;
+  weight: bold;
+  height: 300px;
+  padding: 30px;
+}
+.song-length {
+  text-align: right;
+}
+a {
+  text-decoration: none;
+}
+a:link {
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+a:active {
+  text-decoration: none;
+}
+.float-right {
+  float: right;
+}
+.bold {
+  font-weight: bold;
+}
+#singlebutton {
+  margin: 15px;
+}
+#singlebutton a {
+  color: #fff;
 }
