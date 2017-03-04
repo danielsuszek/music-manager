@@ -1,10 +1,17 @@
 {% extends '::base.html.twig' %}
+{% form_theme form 'MusicManagerManageBundle:Form:bootstrap_3_layout.html.twig' %}
 
 {% block body -%}
     <h1>Album creation</h1>
 
-    {{ form(form) }}
-
+{#    {{form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_widget(show_form) }}
+    {{ form_end(form) }}
+#}    
+    <form action="{{ path('album_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+{#        {{ form_row(form.name) }}#}
+    </form>
         <ul class="record_actions">
     <li>
         <a href="{{ path('album') }}">

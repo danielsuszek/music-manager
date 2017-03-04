@@ -80,13 +80,12 @@ class AlbumController extends Controller
      */
     public function newAction()
     {
-        $entity = new Album();
-        $form   = $this->createCreateForm($entity);
-
+        $album = new Album();
+        $form = $this->createForm(new AlbumType(), $album);
+        
         return $this->render('MusicManagerManageBundle:Album:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
+            'form' => $form->createView(),
+        ));        
     }
 
     /**

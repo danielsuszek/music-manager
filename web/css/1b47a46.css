@@ -6727,7 +6727,8 @@ button.close {
 }
 /* check my style */
 label,
-input {
+input,
+button {
   color: #000;
 }
 .containter {
