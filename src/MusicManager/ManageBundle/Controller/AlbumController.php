@@ -41,13 +41,14 @@ class AlbumController extends Controller
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('album_show', array('id' => $entity->getId())));
-        }
+        
+        exit(\Doctrine\Common\Util\Debug::dump($entity));            
+//            $em = $this->getDoctrine()->getManager();
+//            $em->persist($entity);
+//            $em->flush();
+//
+//            return $this->redirect($this->generateUrl('album_show', array('id' => $entity->getId())));
+        
 
         return $this->render('MusicManagerManageBundle:Album:new.html.twig', array(
             'entity' => $entity,
@@ -78,10 +79,16 @@ class AlbumController extends Controller
      * Displays a form to create a new Album entity.
      *
      */
-    public function newAction()
+    public function newAction(Request $request)
     {
         $album = new Album();
         $form = $this->createForm(new AlbumType(), $album);
+        
+        $form->handleRequest($request);
+        
+         if ($form->isSubmitted() && $form->isValid()) {
+            exit(\Doctrine\Common\Util\Debug::dump($form));
+         }
         
         return $this->render('MusicManagerManageBundle:Album:new.html.twig', array(
             'form' => $form->createView(),

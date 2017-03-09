@@ -281,3 +281,18 @@
     {% if form.parent %}</span>{% else %}</div>{% endif %}
     {%- endif %}
 {%- endblock form_errors %}
+
+{% block field_row %}
+{% spaceless %}
+    {% set class='' %}
+    {% if attr.class is defined %}
+    {% set class = 'class="' ~ attr.class ~ '"' %}
+    {% endif %}
+
+    <div {{ class }} >
+        {{ form_label(form, label|default(null)) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+    </div>
+{% endspaceless %}
+{% endblock field_row %}

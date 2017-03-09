@@ -9,8 +9,13 @@
     {{ form_end(form) }}
 #}    
     <form action="{{ path('album_create') }}" method="post" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
-{#        {{ form_row(form.name) }}#}
+{#        {{ form_widget(form) }}#}
+        {{ form_row(form.name,{'attr': {'class': 'custom-class'}}) }}
+        {{ form_row(form.released) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.rate) }}
+        {{ form_row(form.sleevePicUrl) }}
+        {{ form_widget(form.save, { 'label': 'Dodaj album' }) }}
     </form>
         <ul class="record_actions">
     <li>
