@@ -8,14 +8,29 @@
         {{ form_widget(show_form) }}
     {{ form_end(form) }}
 #}    
-    <form action="{{ path('album_create') }}" method="post" {{ form_enctype(form) }}>
-{#        {{ form_widget(form) }}#}
-        {{ form_row(form.name,{'attr': {'class': 'custom-class'}}) }}
-        {{ form_row(form.released) }}
-        {{ form_row(form.description) }}
-        {{ form_row(form.rate) }}
-        {{ form_row(form.sleevePicUrl) }}
-        {{ form_widget(form.save, { 'label': 'Dodaj album' }) }}
+    <form action="{{ path('album_create') }}" class="form-horizontal" method="post" {{ form_enctype(form) }}>
+{#        <div class="col-xs-6">#}
+            <div class="form-group">
+                {{ form_label(form.name, 'Nazwa albumu', { 'label_attr': {'class': 'col-xs-2'} }) }}
+                 <div class="col-xs-10">
+                {{ form_widget(form.name) }}
+                 </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.released, 'Rok wydania', { 'label_attr': {'class': 'col-xs-3'} }) }}
+                <div class="col-xs-3">
+                    {{ form_widget(form.released) }}
+                </div>
+                {{ form_label(form.rate, 'Ocena', { 'label_attr': {'class': 'col-xs-3'} }) }}
+                <div class="col-xs-3">
+                    {{ form_widget(form.rate) }}
+                </div>
+            </div>
+            {{ form_row(form.description) }}
+            {{ form_row(form.rate) }} 
+           {{ form_row(form.sleevePicUrl) }}
+            {{ form_widget(form.save, { 'label': 'Dodaj album' }) }}
+{#        </div>#}
     </form>
         <ul class="record_actions">
     <li>

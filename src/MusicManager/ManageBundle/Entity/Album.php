@@ -21,7 +21,7 @@ class Album
     private $name;
 
     /**
-     * @var integer
+     * @var 
      */
     private $released;
 
