@@ -14,7 +14,7 @@
                 <div class="list-group">
                     {% for entity in entities %}
                         <a href="{{ path('album_show', {'id': entity.id}) }}" class="list-group-item"> 
-                            <img src="{{ entity.sleevePicUrl }}" alt="" class="picture-small" />                             
+                            <img src="{{ entity.getFullPathToSleeve() }}" alt="" class="picture-small" />                             
                             <span class='band-name'>{{ entity.name }} ({{ entity.released }}) - {{ entity.band.name }}</span>
                         </a>
                     {% endfor %}

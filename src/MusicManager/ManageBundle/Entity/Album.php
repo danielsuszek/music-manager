@@ -187,7 +187,7 @@ class Album
      */
     public function getSleevePicUrl()
     {        
-        return 'http://' . $_SERVER['SERVER_NAME'] . $this->uploadImageDir . $this->sleevePicUrl;
+        return $this->sleevePicUrl;
     }
 
     /**
@@ -231,5 +231,11 @@ class Album
     public function getSongs()
     {
         return $this->songs;
+    }
+    public function getFullPathToSleeve() 
+    {
+        $this->sleevePicUrl = empty($this->sleevePicUrl) ? 'brak-obrazka.jpg' : $this->sleevePicUrl;
+        
+        return 'http://' . $_SERVER['SERVER_NAME'] . $this->uploadImageDir . $this->sleevePicUrl;
     }
 }

@@ -84,6 +84,8 @@ class AlbumController extends Controller
         $album = new Album();
         $form = $this->createForm(new AlbumType(), $album);
         
+        
+        
         $form->handleRequest($request);
         
          if ($form->isSubmitted() && $form->isValid()) {

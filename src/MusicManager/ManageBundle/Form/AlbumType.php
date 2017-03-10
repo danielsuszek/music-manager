@@ -4,7 +4,7 @@ namespace MusicManager\ManageBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use MusicManager\ManageBundle\Entity\Band;
 
 class AlbumType extends AbstractType
 {
@@ -12,14 +12,12 @@ class AlbumType extends AbstractType
     {
         $builder->add('name');
         $builder->add('released');
-//        $builder->add('released', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-//            'choices'  => array(
-//                'Maybe' => null,
-//                'Yes' => true,
-//                'No' => false,
-//            ),
-//        ));
-        $builder->add('rate');
+        $builder->add('rate', 'choice',  array('choices'=> array(
+            '1' => 1, '2' => 2, '3' => 3, '4' => 5, '6' => 6, '7' => 7, '8' => 8, '9' => 9, '10' => 10)));
+        
+        $band = new Band();
+        
+        
         $builder->add('description');
         $builder->add('sleevePicUrl');
             
