@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+{% form_theme form 'MusicManagerManageBundle:Form:bootstrap_3_layout.html.twig' %}
+
+{% block body -%}
+
+
+{#    {{form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_widget(show_form) }}
+    {{ form_end(form) }}
+#}        
+<div class="form-container">
+    <h1 class="text-center">Band creation</h1>
+    <form action="{{ path('album_arrayChoice') }}" class="form-horizontal" method="post" {{ form_enctype(form) }}>
+        <div id="add-album" class="col-xs-6">
+            <div class="form-group">
+                {{ form_label(form.name, 'Nazwa albumu', { 'label_attr': {'class': 'col-xs-2'} }) }}
+                 <div class="col-xs-10">
+                {{ form_widget(form.name) }}
+                 </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="text-center">
+                      {{ form_widget(form.save, { 'label': 'Dodaj album' }) }}
+                    </div>
+                  </div>
+                </div>
+            </div>                 
+        </div>         
+        <div id ="add-songs" class="col-xs-6">
+            Druga kolumna 
+            
+        </div>
+    </form>
+</div>
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('album') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

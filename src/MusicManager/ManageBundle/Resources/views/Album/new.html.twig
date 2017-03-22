@@ -19,6 +19,12 @@
                  </div>
             </div>
             <div class="form-group">
+                {{ form_label(form.bandId, 'Nazwa zespołu', { 'label_attr': {'class': 'col-xs-2'} }) }}
+                 <div class="col-xs-10">
+                {{ form_widget(form.bandId) }}
+                 </div>
+            </div>
+            <div class="form-group">
                 {{ form_label(form.released, 'Rok wydania', { 'label_attr': {'class': 'col-xs-3'} }) }}
                 <div class="col-xs-3">
                     {{ form_widget(form.released) }}
@@ -49,9 +55,6 @@
                   </div>
                 </div>
             </div>                 
-            <div class="form-group">  
-                {{ form_widget(form.save, { 'label': 'Dodaj album' }) }}
-            </div>
         </div>
         
         <div id ="add-songs" class="col-xs-6">

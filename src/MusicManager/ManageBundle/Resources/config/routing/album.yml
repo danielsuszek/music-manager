@@ -28,3 +28,7 @@ album_delete:
     path:     /{id}/delete
     defaults: { _controller: "MusicManagerManageBundle:Album:delete" }
     requirements: { _method: post|delete }
+
+album_arrayChoice:
+    path:     /arrayChoice
+    defaults: { _controller: "MusicManagerManageBundle:Album:arrayChoice" }

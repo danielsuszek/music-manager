@@ -6,7 +6,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use MusicManager\ManageBundle\Entity\Album;
+use MusicManager\ManageBundle\Entity\Band;
 use MusicManager\ManageBundle\Form\AlbumType;
+use MusicManager\ManageBundle\Form\ArrayChoiceType;
 
 /**
  * Album controller.
@@ -88,8 +90,9 @@ class AlbumController extends Controller
         
         $form->handleRequest($request);
         
-         if ($form->isSubmitted() && $form->isValid()) {
-            exit(\Doctrine\Common\Util\Debug::dump($form));
+         if ($form->isSubmitted()) {
+            $task = $form->getData();
+            exit(\Doctrine\Common\Util\Debug::dump($task));
          }
         
         return $this->render('MusicManagerManageBundle:Album:new.html.twig', array(
@@ -97,6 +100,27 @@ class AlbumController extends Controller
         ));        
     }
 
+    public function arrayChoiceAction(Request $request) 
+    {
+        $band = new Band();
+
+        $form = $this->createForm(new ArrayChoiceType(), $band, [
+//            'action' => $this->generateUrl('album_arrayChoice'),
+//            'method' => 'POST',
+        ]);
+        
+        $form->handleRequest($request);        
+        
+        if ($form->isSubmitted()) {
+            $task = $form->getData();
+            exit(\Doctrine\Common\Util\Debug::dump($task));
+        }
+        return $this->render('MusicManagerManageBundle:Band:arrayChoice.html.twig'
+                , array(
+            'form' => $form->createView(),)
+        );        
+    }
+     
     /**
      * Finds and displays a Album entity.
      *
