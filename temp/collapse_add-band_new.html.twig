@@ -1,0 +1,141 @@
+{% extends '::base.html.twig' %}
+{#{% form_theme form 'MusicManagerManageBundle:Form:bootstrap_3_layout.html.twig' %}#}
+
+{% block body -%}
+    
+{#    {{form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_widget(show_form) }}
+    {{ form_end(form) }}
+#}    
+{#    <form action="{{ path('album_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        {{ form_row(form.name) }}
+    </form>
+#}
+    <div class="form-container">
+        <h1 class="text-center">Dodaj album</h1>    
+        <form action="{{ path('album_new') }}" class="form-horizontal" method="post" {{ form_enctype(form) }} >
+            <div id="add-album" class="col-xs-6">
+                <div class="form-group">
+                    <label for="name" class="control-label col-xs-2">Nazwa</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" id="musicmanager_managebundle_album_name" 
+                               name="musicmanager_managebundle_band[name]" placeholder="Nazwa albumu">
+                    </div>
+                </div>       
+                <div class="form-group">
+                    <label for="released" class="control-label col-xs-3">Rok wydania</label>
+                    <div class="col-xs-3">
+                        <input type="text" class="form-control" id="released" name="released" placeholder="">
+                    </div>
+                    <label for="rate" class="control-label col-xs-3">Ocena</label>
+                    <div class="col-xs-3">
+                        <select class="form-control" id="rate">
+                            <option value="" selected></option>
+                            <option value="10">10</option>
+                            <option value="9">9</option>
+                            <option value="8">8</option>
+                            <option value="7">7</option>
+                            <option value="6">6</option>
+                            <option value="5">5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                        </select>
+                    </div>
+                </div>  
+{#                <div class="form-group">
+                    <label for="band" class="control-label col-xs-2">Zespół</label>
+                    <div class="col-xs-6">
+                        <select class="form-control" id="band">
+                            <option value="" selected>-wybierz zespół-</option>
+                            {% for band in allBands %}
+                                <option value="{{ band.id }}">{{ band.name }}</option>
+                            {% endfor %}
+                            
+                        </select>
+                    </div>
+                    <a href="#" class="col-xs-4"><button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" 
+                            data-target="#collapseAddBand" aria-expanded="false" aria-controls="collapseAddBand">Dodaj nowy zespół
+                    </button></a>
+                </div>  
+#}                    
+                {# collapse add band #}
+                <div id="add-band" class="form-group">
+                    <div class="collapse" id="collapseAddBand">
+                        <label for="bandName" class="control-label col-xs-2"><small>Zespół</small></label>
+                        <div class="col-xs-10">
+                            <input type="text" class="form-control input-sm" id="bandName">
+                        </div>
+                        <label for="bandDescription" class="control-label col-xs-2"><small>Opis:</small></label>
+                        <div class="col-xs-10">
+                            <textarea class="form-control input-sm" rows="2" id="bandDescription"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="text-center">
+                                    <a href="#"><button class="btn btn-primary input-sm">Zapisz</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {# end collapse add band #}
+                
+                <div class="form-group">
+                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                        <div class="fileupload-preview thumbnail col-xs-6" style="width: 200px; height: 150px;"></div>
+                        <div class="col-xs-6">
+                          <span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" /></span>
+                          <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+                        </div>
+                      </div>
+                </div>
+                <div class="form-group">
+                    <label for="description" class="control-label col-xs-2">Opis:</label>
+                    <div class="col-xs-10">
+                        <textarea class="form-control" rows="2" id="description"></textarea>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div id ="add-songs" class="col-xs-6">
+                <div class="form-group">
+                    <label for="name" class="control-label col-xs-2">Nazwa</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" id="name" placeholder="Nazwa albumu">
+                    </div>
+                </div>  
+                <div class="form-group">
+                    <label for="name" class="control-label col-xs-2">Nazwa</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" id="name" placeholder="Nazwa albumu">
+                    </div>
+                </div>  
+                <div class="form-group">
+                    <label for="name" class="control-label col-xs-2">Nazwa</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" id="name" placeholder="Nazwa albumu">
+                    </div>
+                </div>  
+            </div>
+            <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary" id="singlebutton">Dodaj album</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div>
+        <a href="{{ path('album') }}">
+            Back to the list
+        </a>
+    </div>
+{% endblock %}
