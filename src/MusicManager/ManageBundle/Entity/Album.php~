@@ -58,7 +58,7 @@ class Album
     /*
      * @var Collection Song
      */
-    protected $songs ;
+    private $songs ;
     
 
     public function __construct() 
@@ -237,41 +237,5 @@ class Album
         $this->sleevePicUrl = empty($this->sleevePicUrl) ? 'brak-obrazka.jpg' : $this->sleevePicUrl;
         
         return 'http://' . $_SERVER['SERVER_NAME'] . $this->uploadImageDir . $this->sleevePicUrl;
-    }
-
-    /**
-     * Add songs
-     *
-     * @param \MusicManager\ManageBundle\Entity\Song $songs
-     * @return Album
-     */
-    public function addSong(\MusicManager\ManageBundle\Entity\Song $songs)
-    {
-        $this->songs[] = $songs;
-    
-        return $this;
-    }
-
-    /**
-     * Remove songs
-     *
-     * @param \MusicManager\ManageBundle\Entity\Song $songs
-     */
-    public function removeSong(\MusicManager\ManageBundle\Entity\Song $songs)
-    {
-        $this->songs->removeElement($songs);
-    }
-
-    /**
-     * Set band
-     *
-     * @param \MusicManager\ManageBundle\Entity\Band $band
-     * @return Album
-     */
-    public function setBand(\MusicManager\ManageBundle\Entity\Band $band = null)
-    {
-        $this->band = $band;
-    
-        return $this;
     }
 }

@@ -5,6 +5,10 @@ namespace MusicManager\ManageBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use MusicManager\ManageBundle\Entity\Band;
+use MusicManager\ManageBundle\Entity\Album;
+use MusicManager\ManageBundle\Entity\Song;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class AlbumType extends AbstractType
 {
@@ -21,11 +25,19 @@ class AlbumType extends AbstractType
             'choice_value' => 'id'
             ]
         );
-
-
+        
         $builder->add('description');
         $builder->add('sleevePicUrl');
-            
+
+        $builder->add('songs', 'collection', [
+            'entry_type' => new SongType(),
+            'allow_add'  => true,
+            ]
+        );
+//        $builder->add('hours', null, array(
+//        'label_attr' => array('class' => 'MYCLASSFOR_LABEL'),
+//        'attr'       => array('class' => 'MYCLASSFOR_INPUTS'),
+//    ));
         $builder->add('save', 'submit', array('label' => 'Dodaj album'));
 //            ->add('name')
 //            ->add('released', 'integer')
@@ -34,7 +46,12 @@ class AlbumType extends AbstractType
 //            ->add('sleevePicUrl')
 //            ->add('save', 'submit', array('label' => 'Dodaj album'));
     }
-    
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'MusicManager\ManageBundle\Entity\Album'
+        ));
+    }
     public function getName()
     {
         return 'album';

@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use MusicManager\ManageBundle\Entity\Album;
 use MusicManager\ManageBundle\Entity\Band;
+use MusicManager\ManageBundle\Entity\Song;
 use MusicManager\ManageBundle\Form\AlbumType;
 use MusicManager\ManageBundle\Form\ArrayChoiceType;
 
@@ -23,9 +24,14 @@ class AlbumController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('MusicManagerManageBundle:Album')->findAll();
+//        $em = $this->getDoctrine()->getManager();
+//
+//        $entities = $em->getRepository('MusicManagerManageBundle:Album')->findAll();
+        
+        $em = $this->getDoctrine()->getEntityManager();
+        
+       $entities = $em->getRepository('MusicManagerManageBundle:Album')
+                    ->getNameOrdered();        
         
 //        exit(\Doctrine\Common\Util\Debug::dump($entities));
 
@@ -44,7 +50,7 @@ class AlbumController extends Controller
         $form->handleRequest($request);
 
         
-        exit(\Doctrine\Common\Util\Debug::dump($entity));            
+//        exit(\Doctrine\Common\Util\Debug::dump($entity));            
 //            $em = $this->getDoctrine()->getManager();
 //            $em->persist($entity);
 //            $em->flush();
@@ -83,15 +89,21 @@ class AlbumController extends Controller
      */
     public function newAction(Request $request)
     {
-        $album = new Album();
+        $album = new Album();        
+        
+        $song1 = new Song();
+        $song1->setTitle('tytul1');
+        $album->getSongs()->add($song1);
+        $song2 = new Song();
+        $song2->setTitle('tytul2');
+        $album->getSongs()->add($song2);
+        
         $form = $this->createForm(new AlbumType(), $album);
-        
-        
         
         $form->handleRequest($request);
         
          if ($form->isSubmitted()) {
-            $task = $form->getData();
+            $task = $form->getData();            
             exit(\Doctrine\Common\Util\Debug::dump($task));
          }
         

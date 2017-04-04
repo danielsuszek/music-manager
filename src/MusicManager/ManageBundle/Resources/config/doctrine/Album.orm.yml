@@ -25,6 +25,7 @@ MusicManager\ManageBundle\Entity\Album:
             type: integer
             column: band_id
     lifecycleCallbacks: {  }    
+    repositoryClass: MusicManager\ManageBundle\Entity\AlbumRepository
     manyToOne:
         band:
             targetEntity: Band
