@@ -22,7 +22,8 @@ class AlbumType extends AbstractType
         $builder->add('bandId', 'entity', [
             'class' => 'MusicManagerManageBundle:Band',
             'choice_label' => 'name',
-            'choice_value' => 'id'
+            'choice_value' => 'id',
+            'empty_data' => 7
             ]
         );
         

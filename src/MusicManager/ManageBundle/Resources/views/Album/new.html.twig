@@ -69,7 +69,7 @@
                 {% endfor %}
 #}              
 
-                <ul id="song-list" class="songs" data-prototype="&lt;label for=&quot;album_songs___name___title&quot; class=&quot;col-xs-2 control-label required&quot;&gt;Utwór __name__&lt;/label&gt;&lt;div class=&quot;col-xs-10&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;album_songs___name___title&quot; name=&quot;album_songs___name___title&quot; class=&quot;form-control&quot;required=&quot;required&quot; maxlength=&quot;255&quot; /&gt;&lt;/div&gt;">
+                <ul id="song-list" class="songs" data-prototype="&lt;label for=&quot;album_songs___name___title&quot; class=&quot;col-xs-2 control-label required&quot;&gt;Utwór __name__&lt;/label&gt;&lt;div class=&quot;col-xs-10&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;album_songs___name___title&quot; name=&quot;album[songs][__name__][title]&quot; class=&quot;form-control&quot;required=&quot;required&quot; maxlength=&quot;255&quot; /&gt;&lt;/div&gt;">
                     {% for song in form.songs %}
                         <li>
                         {{ form_label(song.title, 'Utwór', { 'label_attr': {'class': 'col-xs-2'} }) }}

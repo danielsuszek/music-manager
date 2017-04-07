@@ -18,6 +18,12 @@ use MusicManager\ManageBundle\Form\ArrayChoiceType;
 class AlbumController extends Controller
 {
 
+    public function __construct() 
+    {
+//        $this->songs = new ArrayCollection();
+    }
+    
+    
     /**
      * Lists all Album entities.
      *
@@ -103,8 +109,8 @@ class AlbumController extends Controller
         $form->handleRequest($request);
         
          if ($form->isSubmitted()) {
-            $task = $form->getData();            
-            exit(\Doctrine\Common\Util\Debug::dump($task));
+            $data = $form->getData();            
+            exit(\Doctrine\Common\Util\Debug::dump($data));
          }
         
         return $this->render('MusicManagerManageBundle:Album:new.html.twig', array(

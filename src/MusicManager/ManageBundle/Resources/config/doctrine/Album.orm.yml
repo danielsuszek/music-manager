@@ -37,4 +37,4 @@ MusicManager\ManageBundle\Entity\Album:
         songs:
             targetEntity: Song
             mappedBy: album    
-                
+            cascade: ["persist"]    
