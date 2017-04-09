@@ -16,7 +16,7 @@ class SongType extends AbstractType
     {
         $builder
             ->add('title')
-//            ->add('length')
+            ->add('length')
         ;
     }
     

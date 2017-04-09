@@ -13,7 +13,10 @@ MusicManager\ManageBundle\Entity\Song:
         length:
             type: string
             length: '12'
-    lifecycleCallbacks: {  }
+        albumId:
+            type: integer
+            column: album_id            
+            lifecycleCallbacks: {  }
     manyToOne:
         album:
             targetEntity: Album

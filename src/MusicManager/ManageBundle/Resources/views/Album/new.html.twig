@@ -19,9 +19,9 @@
                  </div>
             </div>
             <div class="form-group">
-                {{ form_label(form.bandId, 'Nazwa zespołu', { 'label_attr': {'class': 'col-xs-2'} }) }}
+                {{ form_label(form.band, 'Nazwa zespołu', { 'label_attr': {'class': 'col-xs-2'} }) }}
                  <div class="col-xs-10">
-                {{ form_widget(form.bandId) }}
+                {{ form_widget(form.band) }}
                  </div>
             </div>
             <div class="form-group">
@@ -58,6 +58,7 @@
         </div>
         
         <div id ="add-songs" class="col-xs-6">
+
             <div class="form-group">
 {#                {% for song in form.songs %}
                     {% set titleIndex = 'Tytuł ' ~ loop.index %}
@@ -69,11 +70,13 @@
                 {% endfor %}
 #}              
 
-                <ul id="song-list" class="songs" data-prototype="&lt;label for=&quot;album_songs___name___title&quot; class=&quot;col-xs-2 control-label required&quot;&gt;Utwór __name__&lt;/label&gt;&lt;div class=&quot;col-xs-10&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;album_songs___name___title&quot; name=&quot;album[songs][__name__][title]&quot; class=&quot;form-control&quot;required=&quot;required&quot; maxlength=&quot;255&quot; /&gt;&lt;/div&gt;">
+                <p id="song-length-title">Czas trwania:</p>    
+                <ul id="song-list" class="songs" data-prototype="&lt;label for=&quot;album_songs___name___title&quot; class=&quot;col-xs-2 control-label required&quot;&gt;Utwór __name__&lt;/label&gt;&lt;div class=&quot;col-xs-8&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;album_songs___name___title&quot; name=&quot;album[songs][__name__][title]&quot; class=&quot;form-control&quot;required=&quot;required&quot; maxlength=&quot;255&quot; /&gt;&lt;/div&gt;&lt;div class=&quot;col-xs-2&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;album_songs___name___length&quot; name=&quot;album[songs][__name__][length]&quot; class=&quot;form-control&quot;required=&quot;required&quot; maxlength=&quot;255&quot; /&gt;&lt;/div&gt;">
                     {% for song in form.songs %}
                         <li>
                         {{ form_label(song.title, 'Utwór', { 'label_attr': {'class': 'col-xs-2'} }) }}
-                        <div class="col-xs-10">{{ form_widget(song.title) }}</div>
+                        <div class="col-xs-8">{{ form_widget(song.title) }}</div>
+                        <div class="col-xs-2">{{ form_widget(song.length) }}</div>
                         </li>
                     {% endfor %}
                 </ul>

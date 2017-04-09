@@ -29,7 +29,19 @@ class Song
      */
     private $album;
 
+    private $albumId;
 
+    public function setAlbumId($albumId) 
+    {
+        $this->albumId = $albumId;
+        
+        return $this;
+    }
+    
+    public function getAlbumId() 
+    {
+        return $this->albumId;
+    }
     /**
      * Get id
      *

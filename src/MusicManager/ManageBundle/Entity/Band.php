@@ -34,7 +34,7 @@ class Band
     {
         $this->albums = new ArrayCollection();
     }
-    
+        
     /**
      * Get id
      *

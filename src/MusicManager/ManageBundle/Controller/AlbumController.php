@@ -10,6 +10,7 @@ use MusicManager\ManageBundle\Entity\Band;
 use MusicManager\ManageBundle\Entity\Song;
 use MusicManager\ManageBundle\Form\AlbumType;
 use MusicManager\ManageBundle\Form\ArrayChoiceType;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Album controller.
@@ -20,7 +21,7 @@ class AlbumController extends Controller
 
     public function __construct() 
     {
-//        $this->songs = new ArrayCollection();
+        $this->songs = new ArrayCollection();
     }
     
     
@@ -98,10 +99,9 @@ class AlbumController extends Controller
         $album = new Album();        
         
         $song1 = new Song();
-        $song1->setTitle('tytul1');
         $album->getSongs()->add($song1);
+        
         $song2 = new Song();
-        $song2->setTitle('tytul2');
         $album->getSongs()->add($song2);
         
         $form = $this->createForm(new AlbumType(), $album);
@@ -109,8 +109,14 @@ class AlbumController extends Controller
         $form->handleRequest($request);
         
          if ($form->isSubmitted()) {
-            $data = $form->getData();            
-            exit(\Doctrine\Common\Util\Debug::dump($data));
+            $album->setBandId($form['band']->getData()->getId());
+            
+//            $data = $form->getData();
+//            exit(\Doctrine\Common\Util\Debug::dump($album));
+             $em = $this->getDoctrine()->getManager();
+             $em->persist($album);
+             $em->flush();
+
          }
         
         return $this->render('MusicManagerManageBundle:Album:new.html.twig', array(

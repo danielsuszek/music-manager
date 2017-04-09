@@ -19,12 +19,11 @@ class AlbumType extends AbstractType
         $builder->add('rate', 'choice',  array('choices'=> array(
             '1' => 1, '2' => 2, '3' => 3, '4' => 5, '6' => 6, '7' => 7, '8' => 8, '9' => 9, '10' => 10)));
         
-        $builder->add('bandId', 'entity', [
+        $builder->add('band', 'entity', [
             'class' => 'MusicManagerManageBundle:Band',
             'choice_label' => 'name',
-            'choice_value' => 'id',
-            'empty_data' => 7
-            ]
+            'choice_value' => 'id'
+        ]
         );
         
         $builder->add('description');
@@ -34,6 +33,7 @@ class AlbumType extends AbstractType
             'entry_type' => new SongType(),
             'allow_add'  => true,
             ]
+            
         );
 //        $builder->add('hours', null, array(
 //        'label_attr' => array('class' => 'MYCLASSFOR_LABEL'),
