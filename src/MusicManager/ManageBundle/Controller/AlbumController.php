@@ -18,13 +18,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class AlbumController extends Controller
 {
-
-    public function __construct() 
-    {
-        $this->songs = new ArrayCollection();
-    }
-    
-    
     /**
      * Lists all Album entities.
      *
@@ -32,11 +25,9 @@ class AlbumController extends Controller
     public function indexAction()
     {
 //        $em = $this->getDoctrine()->getManager();
-//
 //        $entities = $em->getRepository('MusicManagerManageBundle:Album')->findAll();
         
-        $em = $this->getDoctrine()->getEntityManager();
-        
+       $em = $this->getDoctrine()->getEntityManager();
        $entities = $em->getRepository('MusicManagerManageBundle:Album')
                     ->getNameOrdered();        
         
@@ -53,22 +44,27 @@ class AlbumController extends Controller
     public function createAction(Request $request)
     {
         $entity = new Album();
+        
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
-        
-//        exit(\Doctrine\Common\Util\Debug::dump($entity));            
-//            $em = $this->getDoctrine()->getManager();
-//            $em->persist($entity);
-//            $em->flush();
-//
-//            return $this->redirect($this->generateUrl('album_show', array('id' => $entity->getId())));
-        
 
+        if ($form->isSubmitted()) {
+            $em = $this->getDoctrine()->getManager();
+//            exit(\Doctrine\Common\Util\Debug::dump($entity));            
+            
+            $em->persist($entity);
+            $em->flush();
+                
+            return $this->redirect($this->generateUrl('album_show', array('id' => $entity->getId())));
+
+        }
+        
         return $this->render('MusicManagerManageBundle:Album:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
+        
     }
 
     /**
@@ -94,57 +90,29 @@ class AlbumController extends Controller
      * Displays a form to create a new Album entity.
      *
      */
-    public function newAction(Request $request)
+    public function newAction()
     {
-        $album = new Album();        
+        $entity = new Album();
         
         $song1 = new Song();
-        $album->getSongs()->add($song1);
+        $song1->setTitle('tyt1');
+        $song1->setLength('02:33');
+        $entity->getSongs()->add($song1);
         
         $song2 = new Song();
-        $album->getSongs()->add($song2);
+        $song2->setTitle('tyt2');
+        $song2->setLength('03:40');
+        $entity->getSongs()->add($song2);
         
-        $form = $this->createForm(new AlbumType(), $album);
-        
-        $form->handleRequest($request);
-        
-         if ($form->isSubmitted()) {
-            $album->setBandId($form['band']->getData()->getId());
-            
-//            $data = $form->getData();
-//            exit(\Doctrine\Common\Util\Debug::dump($album));
-             $em = $this->getDoctrine()->getManager();
-             $em->persist($album);
-             $em->flush();
+        $form   = $this->createCreateForm($entity);
 
-         }
         
         return $this->render('MusicManagerManageBundle:Album:new.html.twig', array(
-            'form' => $form->createView(),
+            'entity' => $entity,
+            'form'   => $form->createView(),
         ));        
     }
 
-    public function arrayChoiceAction(Request $request) 
-    {
-        $band = new Band();
-
-        $form = $this->createForm(new ArrayChoiceType(), $band, [
-//            'action' => $this->generateUrl('album_arrayChoice'),
-//            'method' => 'POST',
-        ]);
-        
-        $form->handleRequest($request);        
-        
-        if ($form->isSubmitted()) {
-            $task = $form->getData();
-            exit(\Doctrine\Common\Util\Debug::dump($task));
-        }
-        return $this->render('MusicManagerManageBundle:Band:arrayChoice.html.twig'
-                , array(
-            'form' => $form->createView(),)
-        );        
-    }
-     
     /**
      * Finds and displays a Album entity.
      *
@@ -172,7 +140,6 @@ class AlbumController extends Controller
         return $this->render('MusicManagerManageBundle:Album:show.html.twig', array(
             'entity'      => $entity
         ));
-
     }
 
     /**

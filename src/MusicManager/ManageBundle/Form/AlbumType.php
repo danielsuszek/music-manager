@@ -27,34 +27,27 @@ class AlbumType extends AbstractType
         );
         
         $builder->add('description');
-        $builder->add('sleevePicUrl');
+        $builder->add('sleevePicUrl', 'text',['required' => false]);
 
         $builder->add('songs', 'collection', [
             'entry_type' => new SongType(),
             'allow_add'  => true,
+            'by_reference' => false,
             ]
             
         );
-//        $builder->add('hours', null, array(
-//        'label_attr' => array('class' => 'MYCLASSFOR_LABEL'),
-//        'attr'       => array('class' => 'MYCLASSFOR_INPUTS'),
-//    ));
         $builder->add('save', 'submit', array('label' => 'Dodaj album'));
-//            ->add('name')
-//            ->add('released', 'integer')
-//            ->add('description')
-//            ->add('rate', 'integer')
-//            ->add('sleevePicUrl')
-//            ->add('save', 'submit', array('label' => 'Dodaj album'));
     }
+    
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'MusicManager\ManageBundle\Entity\Album'
         ));
     }
+    
     public function getName()
     {
-        return 'album';
+        return 'musicmanager_managebundle_album';
     }
 }

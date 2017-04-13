@@ -21,7 +21,7 @@ class Album
     private $name;
 
     /**
-     * @var 
+     * @var integer
      */
     private $released;
 
@@ -50,15 +50,15 @@ class Album
      */
     private $uploadImageDir = '/Projects/music-manager/web/images/';
 
-    /*
+    /**
      * @var Band
      */
-    private $band ;
+    private $band;
 
-    /*
-     * @var Collection Song
+    /**
+     * @var ArrayCollection
      */
-    protected $songs ;
+    protected $songs;
     
 
     public function __construct() 
@@ -214,6 +214,19 @@ class Album
     }
     
     /**
+     * Set band
+     *
+     * @param Band $band
+     * @return Band
+     */
+    public function setBand(Band $band)
+    {
+        $this->band = $band;
+    
+        return $this;
+    }
+
+    /**
      * Get band
      *
      * @return Band
@@ -226,52 +239,42 @@ class Album
     /**
      * Get songs
      *
-     * @return Collection Song
+     * @return ArrayCollection Song
      */
     public function getSongs()
     {
         return $this->songs;
     }
+
+    /**
+     * Add songs
+     *
+     * @param Song
+     */
+    public function addSong(Song $song)
+    {
+        $song->setAlbum($this);
+        $this->songs->add($song);
+    }
+
+    /**
+     * Remove song
+     *
+     * @param Song
+     */
+    public function removeSong(Song $songs)
+    {
+        $this->songs->removeElement($songs);
+    }
+
+    
+    /*
+     * @return full path to sleeve picture
+     */
     public function getFullPathToSleeve() 
     {
         $this->sleevePicUrl = empty($this->sleevePicUrl) ? 'brak-obrazka.jpg' : $this->sleevePicUrl;
         
         return 'http://' . $_SERVER['SERVER_NAME'] . $this->uploadImageDir . $this->sleevePicUrl;
-    }
-
-    /**
-     * Add songs
-     *
-     * @param \MusicManager\ManageBundle\Entity\Song $songs
-     * @return Album
-     */
-    public function addSong(\MusicManager\ManageBundle\Entity\Song $songs)
-    {
-        $this->songs[] = $songs;
-    
-        return $this;
-    }
-
-    /**
-     * Remove songs
-     *
-     * @param \MusicManager\ManageBundle\Entity\Song $songs
-     */
-    public function removeSong(\MusicManager\ManageBundle\Entity\Song $songs)
-    {
-        $this->songs->removeElement($songs);
-    }
-
-    /**
-     * Set band
-     *
-     * @param \MusicManager\ManageBundle\Entity\Band $band
-     * @return Album
-     */
-    public function setBand(\MusicManager\ManageBundle\Entity\Band $band = null)
-    {
-        $this->band = $band;
-    
-        return $this;
     }
 }

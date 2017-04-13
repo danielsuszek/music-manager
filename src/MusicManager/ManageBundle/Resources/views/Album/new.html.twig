@@ -10,7 +10,7 @@
 #}        
 <div class="form-container">
     <h1 class="text-center">Album creation</h1>
-    <form action="{{ path('album_new') }}" class="form-horizontal" method="post" {{ form_enctype(form) }}>
+    <form action="{{ path('album_create') }}" class="form-horizontal" method="post" {{ form_enctype(form) }}>
         <div id="add-album" class="col-xs-6">
             <div class="form-group">
                 {{ form_label(form.name, 'Nazwa albumu', { 'label_attr': {'class': 'col-xs-2'} }) }}

@@ -25,23 +25,15 @@ class Song
     private $length;
 
     /**
+     * @var integer
+     */
+    private $albumId;
+
+    /**
      * @var Album
      */
     private $album;
 
-    private $albumId;
-
-    public function setAlbumId($albumId) 
-    {
-        $this->albumId = $albumId;
-        
-        return $this;
-    }
-    
-    public function getAlbumId() 
-    {
-        return $this->albumId;
-    }
     /**
      * Get id
      *
@@ -97,6 +89,42 @@ class Song
     {
         return $this->length;
     }
+
+    /**
+     * Set albumId
+     *
+     * @param integer $albumId
+     * @return Song
+     */
+    public function setAlbumId($albumId)
+    {
+        $this->albumId = $albumId;
+    
+        return $this;
+    }
+
+    /**
+     * Get albumId
+     *
+     * @return integer 
+     */
+    public function getAlbumId()
+    {
+        return $this->albumId;
+    }
+
+    /**
+     * Set album
+     *
+     * @param Album $album
+     * @return Album
+     */    
+    public function setAlbum(Album $album) 
+    {
+        $this->album = $album;
+        
+        return $this;
+    }
     
     /**
      * Get album
@@ -107,4 +135,12 @@ class Song
     {
         return $this->album;
     }
+    
+    public function addAlbum(Album $album)
+{
+    if (!$this->album->contains($album)) {
+        $this->album->add($album);
+    }
+}
+
 }
