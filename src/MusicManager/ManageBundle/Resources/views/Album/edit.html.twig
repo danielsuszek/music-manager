@@ -1,16 +1,111 @@
 {% extends '::base.html.twig' %}
+{% form_theme form 'MusicManagerManageBundle:Form:bootstrap_3_layout.html.twig' %}
 
 {% block body -%}
-    <h1>Album edit</h1>
+{#    <h1>Album edit</h1>
 
     {{ form(edit_form) }}
 
-        <ul class="record_actions">
+<ul class="record_actions">
     <li>
         <a href="{{ path('album') }}">
             Back to the list
         </a>
     </li>
     <li>{{ form(delete_form) }}</li>
+</ul>#}
+
+<div class="form-container">
+    <h1 class="text-center">Edycja albumu</h1>
+    <form action="{{ path('album_update', {'id': entity.id}) }}" class="form-horizontal" method="post" {{ form_enctype(form) }}>
+        <div id="add-album" class="col-xs-6">
+            <div class="form-group">
+                {{ form_label(form.name, 'Nazwa albumu', { 'label_attr': {'class': 'col-xs-2'} }) }}
+                 <div class="col-xs-10">
+                {{ form_widget(form.name) }}
+                 </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.band, 'Nazwa zespołu', { 'label_attr': {'class': 'col-xs-2'} }) }}
+                 <div class="col-xs-10">
+                {{ form_widget(form.band) }}
+                 </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.released, 'Rok wydania', { 'label_attr': {'class': 'col-xs-3'} }) }}
+                <div class="col-xs-3">
+                    {{ form_widget(form.released) }}
+                </div>
+                {{ form_label(form.rate, 'Ocena', { 'label_attr': {'class': 'col-xs-3'} }) }}
+                <div class="col-xs-3">
+                    {{ form_widget(form.rate) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.description, 'opis', { 'label_attr': {'class': 'col-xs-2'} }) }}
+                 <div class="col-xs-10">
+                {{ form_widget(form.description) }}
+                 </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.sleevePicUrl, 'Obrazek', { 'label_attr': {'class': 'col-xs-2'} }) }}
+                 <div class="col-xs-10">
+                {{ form_widget(form.sleevePicUrl) }}
+                 </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="text-center">
+                      {{ form_widget(form.save, { 'label': 'Zapisz zmiany' }) }}
+                    </div>
+                  </div>
+                </div>
+            </div>                 
+        </div>
+        
+        <div id ="add-songs" class="col-xs-6">
+
+            <div class="form-group">
+{#                {% for song in form.songs %}
+                    {% set titleIndex = 'Tytuł ' ~ loop.index %}
+                    {{ form_label(song.title, titleIndex, { 'label_attr': {'class': 'col-xs-2'} }) }}
+
+                    <div class="col-xs-10">
+                    {{ form_widget(song.title, {'value' : ''}) }}
+                    </div>
+                {% endfor %}
+#}              
+
+                <p id="song-length-title">Czas trwania:</p>    
+                <ul id="song-list" class="songs" data-prototype="&lt;label for=&quot;album_songs___name___title&quot; class=&quot;col-xs-2 control-label required&quot;&gt;Utwór __name__&lt;/label&gt;&lt;div class=&quot;col-xs-8&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;album_songs___name___title&quot; name=&quot;album[songs][__name__][title]&quot; class=&quot;form-control&quot;required=&quot;required&quot; maxlength=&quot;255&quot; /&gt;&lt;/div&gt;&lt;div class=&quot;col-xs-2&quot;&gt;&lt;input type=&quot;text&quot; id=&quot;album_songs___name___length&quot; name=&quot;album[songs][__name__][length]&quot; class=&quot;form-control&quot;required=&quot;required&quot; maxlength=&quot;255&quot; /&gt;&lt;/div&gt;">
+                    {% for song in form.songs %}
+                        <li>
+                        {{ form_label(song.title, 'Utwór', { 'label_attr': {'class': 'col-xs-2'} }) }}
+                        <div class="col-xs-8">{{ form_widget(song.title) }}</div>
+                        <div class="col-xs-2">{{ form_widget(song.length) }}</div>
+                        </li>
+                    {% endfor %}
+                </ul>
+{#                <div id="song-list" class="songs" data-prototype="{{ form_widget(form.songs.vars.prototype)|e}}">
+                    {% for song in form.songs %}
+                        {{ form_label(song.title, 'Utwór', { 'label_attr': {'class': 'col-xs-2'} }) }}
+                        <div class="col-xs-10">{{ form_widget(song.title) }}</div>
+                    {% endfor %}
+                </div>
+#}                
+            </div>
+
+        </div>
+ 
+    </form>
+</div>
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('album') }}">
+            Back to the list
+        </a>
+    </li>
 </ul>
+
 {% endblock %}

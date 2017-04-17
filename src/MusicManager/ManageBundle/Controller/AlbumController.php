@@ -48,14 +48,14 @@ class AlbumController extends Controller
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
-
+        
         if ($form->isSubmitted()) {
-            $em = $this->getDoctrine()->getManager();
-//            exit(\Doctrine\Common\Util\Debug::dump($entity));            
+//            exit(\Doctrine\Common\Util\Debug::dump($form->getData()));                        
             
+            $em = $this->getDoctrine()->getManager();
+
             $em->persist($entity);
             $em->flush();
-                
             return $this->redirect($this->generateUrl('album_show', array('id' => $entity->getId())));
 
         }
@@ -156,12 +156,12 @@ class AlbumController extends Controller
             throw $this->createNotFoundException('Unable to find Album entity.');
         }
 
-        $editForm = $this->createEditForm($entity);
+        $form = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('MusicManagerManageBundle:Album:edit.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $form->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -177,10 +177,10 @@ class AlbumController extends Controller
     {
         $form = $this->createForm(new AlbumType(), $entity, array(
             'action' => $this->generateUrl('album_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
+            'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+//        $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
@@ -199,10 +199,13 @@ class AlbumController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
-        $editForm->handleRequest($request);
+        $form = $this->createEditForm($entity);
+        $form->handleRequest($request);
 
-        if ($editForm->isValid()) {
+//        exit(\Doctrine\Common\Util\Debug::dump($form));                    
+
+        if ($form->isSubmitted()) {     
+//        exit(\Doctrine\Common\Util\Debug::dump($entity));                    
             $em->flush();
 
             return $this->redirect($this->generateUrl('album_edit', array('id' => $id)));
@@ -210,7 +213,7 @@ class AlbumController extends Controller
 
         return $this->render('MusicManagerManageBundle:Album:edit.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $form->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }

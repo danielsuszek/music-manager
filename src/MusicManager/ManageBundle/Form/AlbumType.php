@@ -48,6 +48,6 @@ class AlbumType extends AbstractType
     
     public function getName()
     {
-        return 'musicmanager_managebundle_album';
+        return 'album';
     }
 }

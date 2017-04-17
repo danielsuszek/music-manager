@@ -2,6 +2,13 @@
 
 {% block body -%}
     <div class="panel panel-default panel-album">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="text-center">
+                        <a href="{{  path('album_edit', {'id': entity.id})  }}"><button class="btn btn-primary" id="singlebutton">Edytuj album</button></a>                          
+                    </div>
+                </div>
+            </div>        
             <div class="panel-heading h2">
                 {{ entity.name }} ({{ entity.released }})<a class="float-right" href="{{ path('album') }}">&larr;Powrót</a>
                 <h5 class="bold">{{ entity.band.name }}</h5>
