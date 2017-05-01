@@ -15,27 +15,43 @@ class AlbumType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name');
-        $builder->add('released');
-        $builder->add('rate', 'choice',  array('choices'=> array(
-            '1' => 1, '2' => 2, '3' => 3, '4' => 5, '6' => 6, '7' => 7, '8' => 8, '9' => 9, '10' => 10)));
         
+        $prepend = range(1900, 2050);
+//        make array (int)1900 => (int)1900, ... ,(int)2050 => (int)2050
+        $released = array_combine(array_values($prepend), $prepend);
+        $builder->add('released', 'choice',[
+                        'choices' => $released, 
+                        'placeholder' => '-wybierz-',
+                        'required'    => false
+                        ]);
+        
+        
+        $prepend = range(1, 10);
+//      keys start from 1 and not from 0
+        $rate = array_combine(array_values($prepend), $prepend);
+        $builder->add('rate', 'choice', [
+                        'choices' => $rate,
+                        'placeholder' => '-wybierz-'
+                        ]);
+
         $builder->add('band', 'entity', [
             'class' => 'MusicManagerManageBundle:Band',
             'choice_label' => 'name',
             'choice_value' => 'id'
-        ]
-        );
+        ]);
         
-        $builder->add('description');
-        $builder->add('sleevePicUrl', 'text',['required' => false]);
+        $builder->add('description', 'text', ['required' => false]);
+
+        $builder->add('sleevePicUrl', 'file',[
+                         'required' => false,
+                          'attr' => ['accept' => '.png,.jpg,.jpeg'],
+                      ]);
 
         $builder->add('songs', 'collection', [
             'entry_type' => new SongType(),
             'allow_add'  => true,
             'by_reference' => false,
-            ]
-            
-        );
+            ]);
         $builder->add('save', 'submit', array('label' => 'Dodaj album'));
     }
     

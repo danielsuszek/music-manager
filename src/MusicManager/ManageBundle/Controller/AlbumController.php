@@ -49,8 +49,19 @@ class AlbumController extends Controller
         $form->handleRequest($request);
 
         
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 //            exit(\Doctrine\Common\Util\Debug::dump($form->getData()));                        
+            $file = $entity->getSleevePicUrl();
+
+            // Generate a unique name for the file before saving it
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            $file->move(
+                $this->getParameter('images_directory'),
+                $fileName
+            );
+
+            $entity->setSleevePicUrl($fileName);
             
             $em = $this->getDoctrine()->getManager();
 
