@@ -9,9 +9,10 @@ use MusicManager\ManageBundle\Entity\Album;
 use MusicManager\ManageBundle\Entity\Band;
 use MusicManager\ManageBundle\Entity\Song;
 use MusicManager\ManageBundle\Form\AlbumType;
+use MusicManager\ManageBundle\Form\AlbumEditType;
 use MusicManager\ManageBundle\Form\ArrayChoiceType;
 use Doctrine\Common\Collections\ArrayCollection;
-
+use Symfony\Component\HttpFoundation\File\File;
 /**
  * Album controller.
  *
@@ -162,7 +163,7 @@ class AlbumController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('MusicManagerManageBundle:Album')->find($id);
-
+        
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Album entity.');
         }
@@ -186,7 +187,7 @@ class AlbumController extends Controller
     */
     private function createEditForm(Album $entity)
     {
-        $form = $this->createForm(new AlbumType(), $entity, array(
+        $form = $this->createForm(new AlbumEditType(), $entity, array(
             'action' => $this->generateUrl('album_update', array('id' => $entity->getId())),
             'method' => 'POST',
         ));
@@ -215,11 +216,11 @@ class AlbumController extends Controller
 
 //        exit(\Doctrine\Common\Util\Debug::dump($form));                    
 
-        if ($form->isSubmitted()) {     
+        if ($form->isSubmitted() && $form->isValid()) {     
 //        exit(\Doctrine\Common\Util\Debug::dump($entity));                    
             $em->flush();
 
-            return $this->redirect($this->generateUrl('album_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('album_show', array('id' => $id)));
         }
 
         return $this->render('MusicManagerManageBundle:Album:edit.html.twig', array(

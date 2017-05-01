@@ -10,7 +10,7 @@ use MusicManager\ManageBundle\Entity\Song;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
-class AlbumType extends AbstractType
+class AlbumEditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -42,12 +42,6 @@ class AlbumType extends AbstractType
         
         $builder->add('description', 'text', ['required' => false]);
 
-        $builder->add('sleevePicUrl', 'file',[
-                         'required' => false,
-                          'attr' => ['accept' => '.png,.jpg,.jpeg'],
-                          'data_class' => null
-                      ]);
-
         $builder->add('songs', 'collection', [
             'entry_type' => new SongType(),
             'allow_add'  => true,
@@ -68,3 +62,4 @@ class AlbumType extends AbstractType
         return 'album';
     }
 }
+
