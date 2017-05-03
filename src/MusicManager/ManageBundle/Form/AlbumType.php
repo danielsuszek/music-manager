@@ -43,7 +43,6 @@ class AlbumType extends AbstractType
         $builder->add('description', 'text', ['required' => false]);
 
         $builder->add('sleevePicUrl', 'file',[
-                         'required' => false,
                           'attr' => ['accept' => '.png,.jpg,.jpeg'],
                           'data_class' => null
                       ]);

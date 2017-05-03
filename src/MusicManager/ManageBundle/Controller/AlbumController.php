@@ -93,8 +93,13 @@ class AlbumController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
+        $form->add('submit', 'submit', [
+                                'label' => 'Dodaj album',
+                                'attr' => [
+                                    'class' => 'btn-primary'
+                                    ]
+        ]);
+        
         return $form;
     }
 
@@ -265,7 +270,13 @@ class AlbumController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('album_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array(
+                    'label' => 'Usuń album',
+                    'attr'  => [
+                            'onclick' => 'return confirm("Usunąć album?")',
+                            'class'   => 'btn btn-danger'
+                        ]
+                ))
             ->getForm()
         ;
     }

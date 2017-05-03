@@ -14,11 +14,22 @@
     </li>
     <li>{{ form(delete_form) }}</li>
 </ul>#}
-
+<h1 id="album-header">Edycja albumu</h1>
 <div class="form-container">
-    <h1 class="text-center">Edycja albumu</h1>
+    <div class="col-sm-12">
+        <div id="delete-form" class="text-center">
+            {{ form(delete_form) }}
+        </div>
+    </div>   
     <form action="{{ path('album_update', {'id': entity.id}) }}" class="form-horizontal" method="post" {{ form_enctype(form) }}>
         <div id="add-album" class="col-xs-6">
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <div class="text-center">
+                        <img src="{{ entity.getFullPathToSleeve() }}" alt="" class="picture-small" />
+                    </div>
+                </div>
+            </div>
             <div class="form-group">
                 {{ form_label(form.name, 'Nazwa albumu', { 'label_attr': {'class': 'col-xs-2'} }) }}
                  <div class="col-xs-10">
@@ -96,9 +107,10 @@
 #}                
             </div>
 
-        </div>
+        </div>            
         {{ form_widget(form._token) }} 
     </form>
+
 </div>
         <ul class="record_actions">
     <li>

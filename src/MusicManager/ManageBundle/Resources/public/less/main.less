@@ -19,7 +19,8 @@ label, input, button {
     width:      @picture-small-width;
     margin-right: 50px;
 }
-.list-album-header {
+
+#album-header {
     margin:             0;
     padding:            15px;
     color:              #000;    
@@ -102,17 +103,20 @@ a:active {
     min-height:     500px;    
     margin:         auto;
     margin-top:     15px;
-    border:         1px solid #000;
-    /*padding:        15px;*/
     color:          #000;
 
 }
 
 #add-album, #add-songs {
-    border:             1px solid #000;
     min-height:         500px;
     padding-top:        15px;
+    border-top:         1px dotted gray;
 }
+
+#add-album {
+    border-right:        1px dotted gray;
+}
+
 #add-songs input, label {
     margin-bottom:        15px;
 }
@@ -132,4 +136,8 @@ a:active {
 #song-length-title {
     text-align: right;
     padding-right: 20px;
+}
+
+#delete-form {
+    padding: 15px;
 }
